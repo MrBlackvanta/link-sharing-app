@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 export default function LoginPage() {
   return (
     <div>
-      <div className="w-48 mb-16">
+      <div className="mb-16 w-48">
         <img src="logo-full.png" alt="logo" />
       </div>
       <div className="mb-10">
         <h1 className="text-2xl font-bold">Login</h1>
-        <p className="mt-2 text-neutral-500">
+        <p className="text-neutral-500 mt-2">
           Add your details below to get back into the app
         </p>
       </div>
@@ -20,12 +20,9 @@ export default function LoginPage() {
             <input
               type="email"
               placeholder="e.g alex@email.com"
-              className="border border-borders border-solid rounded-lg py-3 px-4 ps-10 w-full text-dark-grey"
+              className="w-full rounded-lg border border-solid border-borders px-4 py-3 ps-10 text-dark-grey"
             />
-            <PiEnvelopeSimpleFill
-              className="absolute top-1/2 left-4 transform -translate-y-1/2
-"
-            />
+            <PiEnvelopeSimpleFill className="absolute left-4 top-1/2 -translate-y-1/2 transform" />
           </div>
         </div>
         <div className="flex flex-col gap-1">
@@ -34,12 +31,9 @@ export default function LoginPage() {
             <input
               type="password"
               placeholder="Enter your password"
-              className="border border-borders border-solid rounded-lg py-3 px-4 ps-10 w-full text-dark-grey"
+              className="w-full rounded-lg border border-solid border-borders px-4 py-3 ps-10 text-dark-grey"
             />
-            <PiLockKeyFill
-              className="absolute top-1/2 left-4 transform -translate-y-1/2
-"
-            />
+            <PiLockKeyFill className="absolute left-4 top-1/2 -translate-y-1/2 transform" />
           </div>
         </div>
         <button>Login</button>
