@@ -1,18 +1,19 @@
 import { PiEnvelopeSimpleFill, PiLockKeyFill } from "react-icons/pi";
 import { Link } from "react-router-dom";
+import Logo from "components/Logo";
 
 export default function LoginPage() {
   return (
-    <div>
-      <div className="mb-16 w-48">
-        <img src="logo-full.png" alt="logo" />
-      </div>
+    <>
+      <Logo />
+
       <div className="mb-10">
         <h1 className="text-2xl font-bold">Login</h1>
         <p className="text-neutral-500 mt-2">
           Add your details below to get back into the app
         </p>
       </div>
+
       <form className="flex flex-col gap-6">
         <div className="flex flex-col gap-1">
           <label className="text-xs text-dark-grey">Email address</label>
@@ -43,6 +44,6 @@ export default function LoginPage() {
         <p>Don’t have an account?</p>
         <Link to="/create-account">Create account</Link>
       </div>
-    </div>
+    </>
   );
 }
