@@ -1,6 +1,6 @@
 export default function Logo() {
   return (
-    <div className="mb-16 w-48">
+    <div className="w-48 md:mx-auto">
       <img src="logo-full.png" alt="logo" />
     </div>
   );
