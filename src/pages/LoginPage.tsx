@@ -1,3 +1,4 @@
+import { PiEnvelopeSimpleFill, PiLockKeyFill } from "react-icons/pi";
 import { Link } from "react-router-dom";
 
 export default function LoginPage() {
