@@ -7,15 +7,16 @@ type ButtonProps = {
 
 export default function Button({ children, variant = "primary" }: ButtonProps) {
   const baseClasses =
-    "rounded-lg px-7 py-3 text-white transition-colors duration-200 ease-in-out disabled:opacity-25";
+    "heading-s rounded-lg px-7 py-3 transition-colors duration-200 ease-in-out disabled:opacity-25";
   const primaryClasses =
-    "bg-purple heading-s enabled:active:bg-purple-hover enabled:active:shadow-purple-shadow";
+    "bg-purple enabled:active:bg-purple-hover enabled:active:shadow-purple-shadow text-white";
   const secondaryClasses =
-    "bg-gray-500 heading-s enabled:active:bg-gray-600 enabled:active:shadow-gray-shadow";
+    "border-purple text-purple enabled:active:bg-light-purple border";
 
   const classes = clsx(baseClasses, {
     [primaryClasses]: variant === "primary",
     [secondaryClasses]: variant === "secondary",
   });
+
   return <button className={classes}>{children}</button>;
 }
