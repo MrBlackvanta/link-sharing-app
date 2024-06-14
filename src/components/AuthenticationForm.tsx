@@ -1,12 +1,13 @@
 import { PiEnvelopeSimpleFill, PiLockKeyFill } from "react-icons/pi";
 import { Link } from "react-router-dom";
+import Button from "components/Button";
 
 export default function AuthenticationForm() {
   return (
-    <div className="md:bg-white md:mx-auto md:max-w-md md:rounded-xl md:p-10">
+    <div className="md:mx-auto md:max-w-md md:rounded-xl md:bg-white md:p-10">
       <div className="mb-10">
         <h1 className="md:heading-m text-2xl font-bold">Login</h1>
-        <p className="text-neutral-500 body-m mt-2">
+        <p className="body-m mt-2 text-neutral-500">
           Add your details below to get back into the app
         </p>
       </div>
@@ -34,7 +35,7 @@ export default function AuthenticationForm() {
             <PiLockKeyFill className="absolute left-4 top-1/2 -translate-y-1/2 transform" />
           </div>
         </div>
-        <button>Login</button>
+        <Button>Login</Button>
       </form>
 
       <div className="mt-6 text-center">

@@ -2,9 +2,9 @@ import { AuthenticationForm, Logo } from "components";
 
 export default function LoginPage() {
   return (
-    <div className="grid h-screen place-items-center pb-6">
+    <div className="grid gap-16 place-self-center md:gap-[51px]">
       <Logo />
-      <div className="mb-16" />
+
       <AuthenticationForm />
     </div>
   );
