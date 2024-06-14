@@ -1,6 +1,6 @@
+import { Button, Input } from "components";
 import { PiEnvelopeSimpleFill, PiLockKeyFill } from "react-icons/pi";
 import { Link } from "react-router-dom";
-import Button from "components/Button";
 
 export default function AuthenticationForm() {
   return (
@@ -13,28 +13,18 @@ export default function AuthenticationForm() {
       </div>
 
       <form className="flex flex-col gap-6">
-        <div className="flex flex-col gap-1">
-          <label className="text-xs text-dark-grey">Email address</label>
-          <div className="relative">
-            <input
-              type="email"
-              placeholder="e.g alex@email.com"
-              className="w-full rounded-lg border border-solid border-borders px-4 py-3 ps-10 text-dark-grey"
-            />
-            <PiEnvelopeSimpleFill className="absolute left-4 top-1/2 -translate-y-1/2 transform" />
-          </div>
-        </div>
-        <div className="flex flex-col gap-1">
-          <label className="text-xs text-dark-grey">Password</label>
-          <div className="relative">
-            <input
-              type="password"
-              placeholder="Enter your password"
-              className="w-full rounded-lg border border-solid border-borders px-4 py-3 ps-10 text-dark-grey"
-            />
-            <PiLockKeyFill className="absolute left-4 top-1/2 -translate-y-1/2 transform" />
-          </div>
-        </div>
+        <Input
+          label="Email address"
+          placeholder="e.g alex@email.com"
+          type="email"
+          icon={PiEnvelopeSimpleFill}
+        />
+        <Input
+          label="Password"
+          placeholder="Enter your password"
+          type="password"
+          icon={PiLockKeyFill}
+        />
         <Button>Login</Button>
       </form>
 
