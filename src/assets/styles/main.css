@@ -26,6 +26,10 @@
     font-weight: 400;
     line-height: 18px;
   }
+
+  nav a.active {
+    background-color: var(--light-purple);
+  }
 }
 
 body {
