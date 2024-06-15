@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "layout/MainLayout";
-import { CreateAccountPage, LoginPage } from "pages";
+import { CreateAccountPage, LoginPage, HomePage } from "pages";
 
 export const router = createBrowserRouter([
   {
@@ -14,6 +14,11 @@ export const router = createBrowserRouter([
       {
         path: "/create-account",
         element: <CreateAccountPage />,
+      },
+      {
+        path: "",
+        element: <HomePage />,
+        index: true,
       },
     ],
   },

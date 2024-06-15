@@ -2,7 +2,7 @@ import { AuthenticationForm, Logo } from "components";
 
 export default function CreateAccountPage() {
   return (
-    <div className="grid w-full gap-16 place-self-center md:gap-[51px]">
+    <div className="grid w-full gap-16 place-self-center p-8 md:gap-[51px]">
       <Logo />
 
       <AuthenticationForm
