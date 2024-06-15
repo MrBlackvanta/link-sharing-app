@@ -17,7 +17,7 @@ export default function AuthenticationForm({
   footerLink,
 }: AuthenticationFormProps) {
   return (
-    <div className="md:mx-auto md:max-w-md md:rounded-xl md:bg-white md:p-10">
+    <div className="md:mx-auto md:w-[476px] md:rounded-xl md:bg-white md:p-10">
       <div className="mb-10">
         <h1 className="md:heading-m text-2xl font-bold">{headingText}</h1>
         <p className="body-m mt-2 text-neutral-500">{subHeadingText}</p>
@@ -28,7 +28,7 @@ export default function AuthenticationForm({
 
       <div className="mt-6 text-center">
         <p className="body-m text-neutral-500">{footerText}</p>
-        <Link to={footerLink.redirect} className="text-purple body-m">
+        <Link to={footerLink.redirect} className="body-m text-purple">
           {footerLink.text}
         </Link>
       </div>

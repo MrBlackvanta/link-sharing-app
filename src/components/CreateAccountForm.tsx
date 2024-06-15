@@ -1,19 +1,20 @@
-// CHANGE
-// CHANGE
-
 import { Button, Input } from "components";
+import { useRef } from "react";
 import { useForm } from "react-hook-form";
 import { PiEnvelopeSimpleFill, PiLockKeyFill } from "react-icons/pi";
-import { LoginForm as LoginFormData } from "types";
+import { CreateAccountForm as CreateAccountFormData } from "types";
 
 export default function CreateAccountForm() {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
-  } = useForm<LoginFormData>();
+  } = useForm<CreateAccountFormData>();
+  const password = useRef({});
+  password.current = watch("password", "");
 
-  function onSubmit(data: LoginFormData) {
+  function onSubmit(data: CreateAccountFormData) {
     console.log(data);
   }
 
@@ -28,12 +29,29 @@ export default function CreateAccountForm() {
         error={errors.email}
       />
       <Input
-        label="Password"
-        placeholder="Enter your password"
+        label="Create password"
+        placeholder="At least .8 characters"
         type="password"
         icon={PiLockKeyFill}
-        {...register("password", { required: "Can't be empty" })}
+        {...register("password", {
+          required: "Can't be empty",
+          minLength: {
+            value: 8,
+            message: "Please check again",
+          },
+        })}
         error={errors.password}
+      />
+      <Input
+        label="Confirm password"
+        placeholder="At least .8 characters"
+        type="password"
+        icon={PiLockKeyFill}
+        {...register("confirmPassword", {
+          validate: (value) =>
+            value === password.current || "Passwords do not match",
+        })}
+        error={errors.confirmPassword}
       />
       <Button>Login</Button>
     </form>
