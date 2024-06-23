@@ -1,10 +1,10 @@
 import { Button, Input } from "components";
-import { supabase } from "lib/supabase";
 import { useRef } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { PiEnvelopeSimpleFill, PiLockKeyFill } from "react-icons/pi";
 import { useNavigate } from "react-router-dom";
+import { supabase } from "service";
 import { CreateAccountForm as CreateAccountFormData } from "types";
 
 export default function CreateAccountForm() {

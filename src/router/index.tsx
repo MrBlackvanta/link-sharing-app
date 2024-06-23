@@ -1,6 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "layout/MainLayout";
 import { CreateAccountPage, LoginPage, HomePage } from "pages";
+import ProtectedRoute from "./ProtectedRoute";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 export const router = createBrowserRouter([
   {
@@ -17,7 +21,13 @@ export const router = createBrowserRouter([
       },
       {
         path: "",
-        element: <HomePage />,
+        element: (
+          <QueryClientProvider client={queryClient}>
+            <ProtectedRoute>
+              <HomePage />
+            </ProtectedRoute>
+          </QueryClientProvider>
+        ),
         index: true,
       },
     ],
