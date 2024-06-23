@@ -2,7 +2,9 @@ import { Button, Input } from "components";
 import { supabase } from "lib/supabase";
 import { useRef } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { PiEnvelopeSimpleFill, PiLockKeyFill } from "react-icons/pi";
+import { useNavigate } from "react-router-dom";
 import { CreateAccountForm as CreateAccountFormData } from "types";
 
 export default function CreateAccountForm() {
@@ -14,14 +16,20 @@ export default function CreateAccountForm() {
   } = useForm<CreateAccountFormData>();
   const password = useRef({});
   password.current = watch("password", "");
+  const navigate = useNavigate();
 
   async function onSubmit(user: CreateAccountFormData) {
-    const { data, error } = await supabase.auth.signUp({
+    const { error } = await supabase.auth.signUp({
       email: user.email,
       password: user.password,
     });
-    console.log(data);
-    console.log(error);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
+
+    toast.success("Successfully created!");
+    navigate("/");
   }
 
   return (
@@ -59,7 +67,7 @@ export default function CreateAccountForm() {
         })}
         error={errors.confirmPassword}
       />
-      <Button>Login</Button>
+      <Button>Create new account</Button>
     </form>
   );
 }
