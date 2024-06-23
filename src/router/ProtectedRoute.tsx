@@ -1,18 +1,13 @@
-import { useQuery } from "@tanstack/react-query";
+import { useUser } from "hook/useUser";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
-import { getCurrentUser } from "service";
 
 type ProtectedRoute = {
   children: React.ReactNode;
 };
 
 export default function ProtectedRoute({ children }: ProtectedRoute) {
-  const { data: user, isLoading } = useQuery({
-    queryKey: ["user"],
-    queryFn: getCurrentUser,
-  });
+  const { isLoading, user } = useUser();
   const navigate = useNavigate();
 
   useEffect(() => {

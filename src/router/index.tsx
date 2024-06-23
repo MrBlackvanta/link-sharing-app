@@ -9,7 +9,11 @@ const queryClient = new QueryClient();
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout />,
+    element: (
+      <QueryClientProvider client={queryClient}>
+        <MainLayout />
+      </QueryClientProvider>
+    ),
     children: [
       {
         path: "/login",
@@ -22,11 +26,9 @@ export const router = createBrowserRouter([
       {
         path: "",
         element: (
-          <QueryClientProvider client={queryClient}>
-            <ProtectedRoute>
-              <HomePage />
-            </ProtectedRoute>
-          </QueryClientProvider>
+          <ProtectedRoute>
+            <HomePage />
+          </ProtectedRoute>
         ),
         index: true,
       },
