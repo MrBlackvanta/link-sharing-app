@@ -1,4 +1,5 @@
 import { Button, Input } from "components";
+import { useUser } from "hook/useUser";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { PiEnvelopeSimpleFill, PiLockKeyFill } from "react-icons/pi";
@@ -7,6 +8,7 @@ import { supabase } from "service";
 import { LoginForm as LoginFormData } from "types";
 
 export default function LoginForm() {
+  const { user } = useUser();
   const {
     register,
     handleSubmit,
@@ -24,9 +26,13 @@ export default function LoginForm() {
       return;
     }
 
-    toast.success("Welcome, X!");
+    // TODO
+    // CHANGE EMAIL TO FIRST NAME
+    toast.success(`Welcome, ${user.email}!`);
     navigate("/");
   }
+  console.log(user);
+
   return (
     <form className="flex flex-col gap-6" onSubmit={handleSubmit(onSubmit)}>
       <Input
