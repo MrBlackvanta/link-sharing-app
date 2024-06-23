@@ -1,4 +1,5 @@
 import { Button, Input } from "components";
+import { supabase } from "lib/supabase";
 import { useRef } from "react";
 import { useForm } from "react-hook-form";
 import { PiEnvelopeSimpleFill, PiLockKeyFill } from "react-icons/pi";
@@ -14,8 +15,13 @@ export default function CreateAccountForm() {
   const password = useRef({});
   password.current = watch("password", "");
 
-  function onSubmit(data: CreateAccountFormData) {
+  async function onSubmit(user: CreateAccountFormData) {
+    const { data, error } = await supabase.auth.signUp({
+      email: user.email,
+      password: user.password,
+    });
     console.log(data);
+    console.log(error);
   }
 
   return (
