@@ -20,7 +20,7 @@ export default function Header() {
           />
         </NavLink>
         <NavLink
-          to="links"
+          to="/links"
           className={({ isActive }) =>
             clsx(baseStyles, { [activeStyles]: isActive })
           }
@@ -29,7 +29,7 @@ export default function Header() {
           <span className="hidden md:block">Links</span>
         </NavLink>
         <NavLink
-          to="profile-details"
+          to="/profile-details"
           className={({ isActive }) =>
             clsx(baseStyles, { [activeStyles]: isActive })
           }
@@ -38,8 +38,10 @@ export default function Header() {
           <span className="hidden md:block">Profile Details</span>
         </NavLink>
         <Button variant="secondary" className="ms-auto !px-4">
-          <PiEyeBold className="md:hidden" />
-          <span className="hidden md:block">Preview</span>
+          <NavLink to="/preview">
+            <PiEyeBold className="md:hidden" />
+            <span className="hidden md:block">Preview</span>
+          </NavLink>
         </Button>
       </nav>
     </header>
