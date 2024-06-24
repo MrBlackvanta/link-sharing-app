@@ -8,7 +8,7 @@ import { supabase } from "service";
 import { LoginForm as LoginFormData } from "types";
 
 export default function LoginForm() {
-  const { user } = useUser();
+  const { user: curUser } = useUser();
   const {
     register,
     handleSubmit,
@@ -28,10 +28,9 @@ export default function LoginForm() {
 
     // TODO
     // CHANGE EMAIL TO FIRST NAME
-    toast.success(`Welcome, ${user.email}!`);
+    toast.success(`Welcome, ${curUser?.email}!`);
     navigate("/");
   }
-  console.log(user);
 
   return (
     <form className="flex flex-col gap-6" onSubmit={handleSubmit(onSubmit)}>
