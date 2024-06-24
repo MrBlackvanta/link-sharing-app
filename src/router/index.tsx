@@ -1,7 +1,7 @@
 import { Navigate, createBrowserRouter } from "react-router-dom";
 import MainLayout from "layout/MainLayout";
-import { CreateAccountPage, LoginPage, HomePage } from "pages";
-import ProtectedRoute from "./ProtectedRoute";
+import { CreateAccountPage, LoginPage } from "pages";
+import ProtectedRoute from "router/ProtectedRoute";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const queryClient = new QueryClient();
@@ -15,27 +15,27 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "/login",
+        path: "login",
         element: <LoginPage />,
       },
       {
-        path: "/create-account",
+        path: "create-account",
         element: <CreateAccountPage />,
       },
       {
         path: "/",
-        element: (
-          <ProtectedRoute>
-            <HomePage />
-          </ProtectedRoute>
-        ),
+        element: <Navigate to="links" replace />,
+      },
+      {
+        element: <ProtectedRoute />,
         children: [
           {
-            element: <Navigate to="links" replace />,
+            path: "links",
+            element: <>links</>,
           },
           {
-            path: "links",
-            element: <h1>links</h1>,
+            path: "profile-details",
+            element: <>profile</>,
           },
         ],
       },
