@@ -15,7 +15,7 @@ export default function Header() {
           <img src="logo.png" alt="logo" />
         </NavLink>
         <NavLink
-          to="/"
+          to="links"
           className={({ isActive }) =>
             clsx(baseStyles, { [activeStyles]: isActive })
           }
@@ -23,7 +23,7 @@ export default function Header() {
           <PiLinkBold />
         </NavLink>
         <NavLink
-          to="/"
+          to="profile-details"
           className={({ isActive }) =>
             clsx(baseStyles, { [activeStyles]: isActive })
           }
@@ -33,10 +33,6 @@ export default function Header() {
         <Button variant="secondary" className="ms-auto !px-4">
           <PiEyeBold />
         </Button>
-        {/* <NavLink
-          to="/"
-          className=" block rounded-lg border border-purple px-4 py-3 text-purple"
-        ></NavLink> */}
       </nav>
     </header>
   );

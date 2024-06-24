@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { Navigate, createBrowserRouter } from "react-router-dom";
 import MainLayout from "layout/MainLayout";
 import { CreateAccountPage, LoginPage, HomePage } from "pages";
 import ProtectedRoute from "./ProtectedRoute";
@@ -8,7 +8,6 @@ const queryClient = new QueryClient();
 
 export const router = createBrowserRouter([
   {
-    path: "/",
     element: (
       <QueryClientProvider client={queryClient}>
         <MainLayout />
@@ -24,13 +23,21 @@ export const router = createBrowserRouter([
         element: <CreateAccountPage />,
       },
       {
-        path: "",
+        path: "/",
         element: (
           <ProtectedRoute>
             <HomePage />
           </ProtectedRoute>
         ),
-        index: true,
+        children: [
+          {
+            element: <Navigate to="links" replace />,
+          },
+          {
+            path: "links",
+            element: <h1>links</h1>,
+          },
+        ],
       },
     ],
   },
