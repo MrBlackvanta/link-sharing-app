@@ -11,8 +11,13 @@ export default function Header() {
   return (
     <header>
       <nav className="flex items-center p-4">
-        <NavLink to="/" className="me-auto w-[27px]">
-          <img src="logo.png" alt="logo" />
+        <NavLink to="/" className="me-auto">
+          <img src="logo.png" alt="logo" className="w-[27px] md:hidden" />
+          <img
+            src="logo-full.png"
+            alt="logo"
+            className="hidden w-[146px] md:block"
+          />
         </NavLink>
         <NavLink
           to="links"
@@ -21,6 +26,7 @@ export default function Header() {
           }
         >
           <PiLinkBold />
+          <span className="hidden md:block">Links</span>
         </NavLink>
         <NavLink
           to="profile-details"
@@ -29,9 +35,11 @@ export default function Header() {
           }
         >
           <PiUserCircleBold />
+          <span className="hidden md:block">Profile Details</span>
         </NavLink>
         <Button variant="secondary" className="ms-auto !px-4">
-          <PiEyeBold />
+          <PiEyeBold className="md:hidden" />
+          <span className="hidden md:block">Preview</span>
         </Button>
       </nav>
     </header>
