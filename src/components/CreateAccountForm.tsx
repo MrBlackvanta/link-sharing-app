@@ -67,6 +67,9 @@ export default function CreateAccountForm() {
         })}
         error={errors.confirmPassword}
       />
+      <p className="body-s text-neutral-500">
+        Password must contain at least 8 characters
+      </p>
       <Button>Create new account</Button>
     </form>
   );

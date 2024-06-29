@@ -7,10 +7,10 @@ export default function MainLayout() {
   const { user } = useUser();
 
   return (
-    <div className="grid min-h-screen bg-neutral-50">
+    <>
       <Toaster />
       {user && <Header />}
       <Outlet />
-    </div>
+    </>
   );
 }

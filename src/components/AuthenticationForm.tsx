@@ -19,7 +19,9 @@ export default function AuthenticationForm({
   return (
     <div className="md:mx-auto md:w-[476px] md:rounded-xl md:bg-white md:p-10">
       <div className="mb-10">
-        <h1 className="md:heading-m text-2xl font-bold">{headingText}</h1>
+        <h1 className="md:heading-m text-2xl font-bold text-dark-grey">
+          {headingText}
+        </h1>
         <p className="body-m mt-2 text-neutral-500">{subHeadingText}</p>
       </div>
 
