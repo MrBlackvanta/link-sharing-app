@@ -3,7 +3,12 @@ import { Button } from "components";
 export default function LinksPage() {
   return (
     <div className="flex gap-6">
-      <div className="hidden basis-[40.5%] rounded-xl bg-white lg:block"></div>
+      <div className="hidden basis-[40.5%] rounded-xl bg-white lg:grid lg:place-content-center">
+        <div className="h-[631px] w-[307px] rounded-[50px] border border-neutral-500 px-[11px] py-[10px]">
+          <div className="grid size-full place-content-center border [border-image:url(phone-notch-border.svg)_1_fill]"></div>
+        </div>
+      </div>
+
       <div className="flex-1 rounded-xl bg-white p-4">
         <div className="mb-6 p-2">
           <h1 className="heading-dark mb-2">Customize your links</h1>
