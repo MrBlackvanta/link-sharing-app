@@ -7,7 +7,6 @@ import ProtectedRoute from "./ProtectedRoute";
 
 const queryClient = new QueryClient();
 
-// Function to wrap components with QueryClientProvider
 const withQueryClientProvider = (
   element: React.ReactNode,
 ): React.ReactElement => (
