@@ -3,6 +3,7 @@ import MainLayout from "layout/MainLayout";
 import { CreateAccountPage, LoginPage } from "pages";
 import ProtectedRoute from "./ProtectedRoute";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import LinksPage from "pages/LinksPage";
 
 const queryClient = new QueryClient();
 
@@ -28,7 +29,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "links",
-        element: <ProtectedRoute>links</ProtectedRoute>,
+        element: (
+          <ProtectedRoute>
+            <LinksPage />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "profile-details",
