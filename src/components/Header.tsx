@@ -37,12 +37,12 @@ export default function Header() {
           <PiUserCircleBold />
           <span className="hidden md:block">Profile Details</span>
         </NavLink>
-        <Button variant="secondary" className="ms-auto !px-4">
-          <NavLink to="/preview">
+        <NavLink to="/preview" className="ms-auto">
+          <Button variant="secondary" className="!px-4">
             <PiEyeBold className="md:hidden" />
             <span className="hidden md:block">Preview</span>
-          </NavLink>
-        </Button>
+          </Button>
+        </NavLink>
       </nav>
     </header>
   );
