@@ -1,9 +1,8 @@
 import { Navigate, createBrowserRouter } from "react-router-dom";
 import MainLayout from "layout/MainLayout";
-import { CreateAccountPage, LoginPage } from "pages";
+import { CreateAccountPage, LoginPage, LinksPage } from "pages";
 import ProtectedRoute from "./ProtectedRoute";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import LinksPage from "pages/LinksPage";
 
 const queryClient = new QueryClient();
 
