@@ -4,14 +4,14 @@ import { Outlet } from "react-router-dom";
 
 export default function MainLayout() {
   return (
-    <>
+    <div className="bg-neutral-50">
       <Toaster />
-      <div className="flex min-h-screen flex-col">
+      <div className="mx-auto flex min-h-screen max-w-[1392px] flex-col">
         <Header />
-        <main className="flex-1 bg-neutral-50 p-4">
+        <main className="flex-1 p-4">
           <Outlet />
         </main>
       </div>
-    </>
+    </div>
   );
 }
