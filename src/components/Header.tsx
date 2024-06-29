@@ -9,8 +9,8 @@ export default function Header() {
   const activeStyles = "bg-light-purple text-purple";
 
   return (
-    <header>
-      <nav className="flex items-center p-4">
+    <header className="md:p-6">
+      <nav className="flex items-center rounded-lg bg-white p-4">
         <NavLink to="/" className="me-auto">
           <img src="logo.png" alt="logo" className="w-[27px] md:hidden" />
           <img

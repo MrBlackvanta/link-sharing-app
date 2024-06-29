@@ -8,7 +8,7 @@ export default function MainLayout() {
       <Toaster />
       <div className="mx-auto flex min-h-screen max-w-[1392px] flex-col">
         <Header />
-        <main className="flex-1 p-4">
+        <main className="flex-1 p-4 md:pt-0">
           <Outlet />
         </main>
       </div>
