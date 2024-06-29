@@ -6,8 +6,12 @@ export default function MainLayout() {
   return (
     <>
       <Toaster />
-      <Header />
-      <Outlet />
+      <div className="flex min-h-screen flex-col">
+        <Header />
+        <main className="flex-1 bg-neutral-50 p-4">
+          <Outlet />
+        </main>
+      </div>
     </>
   );
 }

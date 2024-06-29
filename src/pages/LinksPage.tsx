@@ -2,7 +2,7 @@ import { Button } from "components";
 
 export default function LinksPage() {
   return (
-    <main className="m-4 rounded-xl bg-white p-4">
+    <div className="rounded-xl bg-white p-4">
       <div className="mb-6 p-2">
         <h1 className="mb-2 text-2xl font-bold text-dark-grey">
           Customize your links
@@ -37,6 +37,6 @@ export default function LinksPage() {
       <Button className="mt-6 w-full" disabled>
         Save
       </Button>
-    </main>
+    </div>
   );
 }
