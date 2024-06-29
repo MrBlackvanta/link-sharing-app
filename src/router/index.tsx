@@ -6,14 +6,18 @@ import ProtectedRoute from "./ProtectedRoute";
 
 const queryClient = new QueryClient();
 
+function withQueryClientProvider(element: React.ReactNode) {
+  return (
+    <QueryClientProvider client={queryClient}>{element}</QueryClientProvider>
+  );
+}
+
 export const router = createBrowserRouter([
   {
-    element: (
-      <QueryClientProvider client={queryClient}>
-        <ProtectedRoute>
-          <MainLayout />
-        </ProtectedRoute>
-      </QueryClientProvider>
+    element: withQueryClientProvider(
+      <ProtectedRoute>
+        <MainLayout />
+      </ProtectedRoute>,
     ),
     children: [
       {
@@ -35,11 +39,7 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    element: (
-      <QueryClientProvider client={queryClient}>
-        <AuthLayout />
-      </QueryClientProvider>
-    ),
+    element: withQueryClientProvider(<AuthLayout />),
     children: [
       {
         path: "login",
