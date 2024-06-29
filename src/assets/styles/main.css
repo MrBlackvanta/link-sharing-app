@@ -32,6 +32,10 @@
   }
 }
 
+.heading-dark {
+  @apply md:heading-m text-2xl font-bold text-dark-grey;
+}
+
 body {
   font-family: "Instrument Sans", sans-serif;
 }

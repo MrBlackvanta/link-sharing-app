@@ -4,9 +4,7 @@ export default function LinksPage() {
   return (
     <div className="rounded-xl bg-white p-4">
       <div className="mb-6 p-2">
-        <h1 className="mb-2 text-2xl font-bold text-dark-grey">
-          Customize your links
-        </h1>
+        <h1 className="heading-dark mb-2">Customize your links</h1>
         <p className="body-m mb-10">
           Add/edit/remove links below and then share all your profiles with the
           world!
@@ -20,12 +18,10 @@ export default function LinksPage() {
             <img
               src="links-empty.png"
               alt="hand tapping a phone with 2 paper pages at the back"
-              className="h-20"
+              className="h-20 md:h-40"
             />
           </picture>
-          <h2 className="text-2xl font-bold text-dark-grey">
-            Let’s get you started
-          </h2>
+          <h2 className="heading-dark">Let’s get you started</h2>
           <p className="body-m text-neutral-500">
             Use the “Add new link” button to get started. Once you have more
             than one link, you can reorder and edit them. We’re here to help you
