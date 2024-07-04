@@ -12,12 +12,18 @@ export default function Header() {
     <header className="md:p-6">
       <nav className="flex items-center rounded-lg bg-white p-4">
         <NavLink to="/" className="me-auto">
-          <img src="logo.png" alt="logo" className="w-[27px] md:hidden" />
-          <img
-            src="logo-full.png"
-            alt="logo"
-            className="hidden w-[146px] md:block"
-          />
+          <picture>
+            <source srcSet="logo.avif" type="image/avif" />
+            <img src="logo.png" alt="logo" className="w-[27px] md:hidden" />
+          </picture>
+          <picture>
+            <source srcSet="logo-full.avif" type="image/avif" />
+            <img
+              src="logo-full.png"
+              alt="logo"
+              className="hidden w-[146px] md:block"
+            />
+          </picture>
         </NavLink>
         <NavLink
           to="/links"
