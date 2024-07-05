@@ -38,7 +38,7 @@ function InputComponent(
       <div className="relative">
         <input className={classes} ref={ref} {...props} />
         <Icon className="absolute start-4 top-1/2 -translate-y-1/2 transform text-neutral-500" />
-        <span className="body-s text-red absolute end-4 top-1/2 -translate-y-1/2 transform">
+        <span className="body-s text-red absolute end-4 top-1/2 -translate-y-1/2 transform bg-white ps-1">
           {error?.message}
         </span>
       </div>

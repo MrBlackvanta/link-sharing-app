@@ -1,18 +1,146 @@
-import { PiEqualsLight, PiGithubLogoFill, PiLinkBold } from "react-icons/pi";
 import { Button, Input } from "components";
-import { IoChevronDownOutline } from "react-icons/io5";
-import { Link as LinkType } from "types";
 import { useState } from "react";
+import { FieldErrors, UseFormRegister } from "react-hook-form";
+import { BiLogoDevTo } from "react-icons/bi";
+import { IoChevronDownOutline } from "react-icons/io5";
+import {
+  PiCodepenLogo,
+  PiEqualsLight,
+  PiGithubLogoFill,
+  PiLinkBold,
+  PiStackOverflowLogo,
+} from "react-icons/pi";
+import {
+  SiCodewars,
+  SiFacebook,
+  SiFreecodecamp,
+  SiFrontendmentor,
+  SiGitlab,
+  SiHashnode,
+  SiLinkedin,
+  SiTwitch,
+  SiTwitter,
+  SiYoutube,
+} from "react-icons/si";
+import { Link as LinkType, Platform as PlatformType } from "types";
 
-const PLATFORMS = [{}, {}];
+const PLATFORMS: PlatformType[] = [
+  {
+    id: 1,
+    label: "GitHub",
+    key: "github",
+    icon: PiGithubLogoFill,
+  },
+  {
+    id: 2,
+    label: "Frontend Mentor",
+    key: "frontend-mentor",
+    icon: SiFrontendmentor,
+  },
+  {
+    id: 3,
+    label: "Twitter",
+    key: "twitter",
+    icon: SiTwitter,
+  },
+  {
+    id: 4,
+    label: "LinkedIn",
+    key: "linkedin",
+    icon: SiLinkedin,
+  },
+  {
+    id: 5,
+    label: "YouTube",
+    key: "youtube",
+    icon: SiYoutube,
+  },
+  {
+    id: 6,
+    label: "Facebook",
+    key: "facebook",
+    icon: SiFacebook,
+  },
+  {
+    id: 7,
+    label: "Twitch",
+    key: "twitch",
+    icon: SiTwitch,
+  },
+  {
+    id: 8,
+    label: "Dev.to",
+    key: "devto",
+    icon: BiLogoDevTo,
+  },
+  {
+    id: 9,
+    label: "Codewars",
+    key: "cordewars",
+    icon: SiCodewars,
+  },
+  {
+    id: 10,
+    label: "Codepen",
+    key: "codepen",
+    icon: PiCodepenLogo,
+  },
+  {
+    id: 11,
+    label: "freeCodeCamp",
+    key: "freecodecamp",
+    icon: SiFreecodecamp,
+  },
+  {
+    id: 12,
+    label: "GitLab",
+    key: "gitlab",
+    icon: SiGitlab,
+  },
+  {
+    id: 13,
+    label: "Hashnode",
+    key: "hashnode",
+    icon: SiHashnode,
+  },
+  {
+    id: 14,
+    label: "Stack Overflow",
+    key: "stack-overflow",
+    icon: PiStackOverflowLogo,
+  },
+];
 
-export default function Link(props: LinkType) {
+type LinkProps = {
+  data: LinkType;
+  register: UseFormRegister<{ url: string }>;
+  errors: FieldErrors<{ url: string }>;
+};
+
+export default function Link({ data, register, errors }: LinkProps) {
+  const { index, platform, url } = data;
   const [openMenu, setOpenMenu] = useState<boolean>(false);
-  const { index, platform, url } = props;
+  const [selectedPlatform, setSelectedPlatform] = useState<PlatformType>(
+    PLATFORMS.filter((el) => el.key === platform.key)?.[0] || PLATFORMS[0],
+  );
 
-  function handlePlatformsMenu() {
-    setOpenMenu((prev) => !prev);
+  function handlePlatformsMenu(platform?: PlatformType) {
+    if (!platform) {
+      setOpenMenu(true);
+      return;
+    }
+    setSelectedPlatform(platform);
+    setOpenMenu(false);
   }
+
+  const validURL = (value: string) => {
+    try {
+      new URL(value);
+      return true;
+    } catch (error) {
+      return "Invalid URL";
+    }
+  };
 
   return (
     <div className="grid gap-3 rounded-xl bg-neutral-50 p-5">
@@ -30,22 +158,22 @@ export default function Link(props: LinkType) {
         <div className="relative">
           <div
             className="flex cursor-pointer items-center justify-between gap-3 rounded-lg border border-borders bg-white px-4 py-3"
-            onClick={handlePlatformsMenu}
+            onClick={() => handlePlatformsMenu(undefined)}
           >
-            <PiGithubLogoFill className="text-neutral-500" />
-            <span className="body-m flex-1">{platform.label}</span>
+            <selectedPlatform.icon className="text-neutral-500" />
+            <span className="body-m flex-1">{selectedPlatform.label}</span>
             <IoChevronDownOutline className="text-purple" />
           </div>
           {openMenu && (
-            <div className="shadow-black-shadow absolute top-[calc(100%_+12px)] z-10 w-full rounded-lg border-borders bg-white px-4 py-3">
+            <div className="shadow-black-shadow scrollbar-hide absolute top-[calc(100%_+12px)] z-10 max-h-52 w-full overflow-y-auto rounded-lg border-borders bg-white px-4 py-3">
               {PLATFORMS.map((el, idx) => (
                 <div
-                  className={`flex cursor-pointer items-center gap-3 border-b border-borders py-3 text-neutral-500 hover:text-purple ${index === PLATFORMS.length - 1 ? "last:border-b-0" : ""}`}
+                  className={`flex cursor-pointer items-center gap-3 border-b border-borders py-3 text-neutral-500 hover:text-purple ${idx === PLATFORMS.length - 1 ? "last:border-b-0" : ""}`}
                   key={idx}
-                  onClick={handlePlatformsMenu}
+                  onClick={() => handlePlatformsMenu(el)}
                 >
-                  <PiGithubLogoFill className="text-inherit" />
-                  <span className="body-m flex-1">{platform.label}</span>
+                  <el.icon className="text-inherit" />
+                  <span className="body-m flex-1">{el.label}</span>
                 </div>
               ))}
             </div>
@@ -56,7 +184,10 @@ export default function Link(props: LinkType) {
         icon={PiLinkBold}
         label="Link"
         placeholder="e.g. https://www.github.com/johnappleseed"
-        value={url}
+        defaultValue={url}
+        type="text"
+        {...register("url", { required: "Can't be empty", validate: validURL })}
+        error={errors.url}
       />
     </div>
   );
