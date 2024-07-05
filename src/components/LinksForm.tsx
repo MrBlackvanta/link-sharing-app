@@ -5,10 +5,13 @@ import { Link as LinkType } from "types";
 
 export default function LinksForm() {
   const [links, setLinks] = useState<LinkType[]>([]);
+  const [btnType, setBtnType] = useState<"button" | "submit">("button");
 
   function handleAddNewLink() {
-    const lastLink = links.at(-1);
-    if ((lastLink?.platform.key && lastLink?.url) || links.length === 0) {
+    if (!links.at(-1)?.url && links.length !== 0) {
+      setBtnType("submit");
+    } else {
+      setBtnType("button");
       const newLink = {
         index: links.length + 1,
         platform: {
@@ -34,7 +37,8 @@ export default function LinksForm() {
           variant="secondary"
           className="mb-6 w-full"
           onClick={handleAddNewLink}
-          type="button"
+          type={btnType}
+          form={`form-${links?.at(-1)?.index}`}
         >
           + Add new link
         </Button>
