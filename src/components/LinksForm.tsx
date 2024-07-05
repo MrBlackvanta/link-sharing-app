@@ -1,14 +1,9 @@
 import { Button, Link, LinksEmpty } from "components";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+
 import { Link as LinkType } from "types";
 
 export default function LinksForm() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<{ url: string }>();
   const [links, setLinks] = useState<LinkType[]>([]);
 
   function handleAddNewLink() {
@@ -27,13 +22,8 @@ export default function LinksForm() {
     }
   }
 
-  function onSubmit() {}
-
   return (
-    <form
-      className="flex-1 rounded-xl bg-white p-4"
-      onSubmit={handleSubmit(onSubmit)}
-    >
+    <div className="flex-1 rounded-xl bg-white p-4">
       <div className="mb-6 p-2">
         <h1 className="heading-dark mb-2">Customize your links</h1>
         <p className="body-m mb-10">
@@ -52,15 +42,20 @@ export default function LinksForm() {
         {links.length !== 0 && (
           <div className="grid gap-6">
             {links.map((link, idx) => (
-              <Link key={idx} data={link} register={register} errors={errors} />
+              <Link key={idx} data={link} setLinks={setLinks} />
             ))}
           </div>
         )}
       </div>
       <hr className="mx-[-1rem] border-borders" />
-      <Button className="mt-6 w-full" disabled={!!errors?.url}>
+      <Button
+        className="mt-6 w-full"
+        disabled={!links?.at(-1)?.url}
+        type="submit"
+        form={`form-${links?.at(-1)?.index}`}
+      >
         Save
       </Button>
-    </form>
+    </div>
   );
 }

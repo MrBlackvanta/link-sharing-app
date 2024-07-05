@@ -1,6 +1,6 @@
 import { Button, Input } from "components";
-import { useState } from "react";
-import { FieldErrors, UseFormRegister } from "react-hook-form";
+import { Dispatch, SetStateAction, useState } from "react";
+import { useForm } from "react-hook-form";
 import { BiLogoDevTo } from "react-icons/bi";
 import { IoChevronDownOutline } from "react-icons/io5";
 import {
@@ -113,11 +113,15 @@ const PLATFORMS: PlatformType[] = [
 
 type LinkProps = {
   data: LinkType;
-  register: UseFormRegister<{ url: string }>;
-  errors: FieldErrors<{ url: string }>;
+  setLinks: Dispatch<SetStateAction<LinkType[]>>;
 };
 
-export default function Link({ data, register, errors }: LinkProps) {
+export default function Link({ data, setLinks }: LinkProps) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<{ url: string }>();
   const { index, platform, url } = data;
   const [openMenu, setOpenMenu] = useState<boolean>(false);
   const [selectedPlatform, setSelectedPlatform] = useState<PlatformType>(
@@ -142,8 +146,17 @@ export default function Link({ data, register, errors }: LinkProps) {
     }
   };
 
+  function onSubmit() {
+    console.log(index);
+    
+  }
+
   return (
-    <div className="grid gap-3 rounded-xl bg-neutral-50 p-5">
+    <form
+      className="grid gap-3 rounded-xl bg-neutral-50 p-5"
+      onSubmit={handleSubmit(onSubmit)}
+      id={`form-${index}`}
+    >
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <PiEqualsLight />
@@ -186,9 +199,22 @@ export default function Link({ data, register, errors }: LinkProps) {
         placeholder="e.g. https://www.github.com/johnappleseed"
         defaultValue={url}
         type="text"
-        {...register("url", { required: "Can't be empty", validate: validURL })}
+        {...register("url", {
+          required: "Can't be empty",
+          validate: validURL,
+          onChange(e) {
+            const newLink = {
+              index,
+              platform: selectedPlatform,
+              url: e.target.value,
+            };
+            setLinks((prev) =>
+              prev.map((el) => (el.index === index ? newLink : el)),
+            );
+          },
+        })}
         error={errors.url}
       />
-    </div>
+    </form>
   );
 }
