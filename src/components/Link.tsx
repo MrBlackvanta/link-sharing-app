@@ -116,6 +116,15 @@ type LinkProps = {
   setLinks: Dispatch<SetStateAction<LinkType[]>>;
 };
 
+const validURL = (value: string) => {
+  try {
+    new URL(value);
+    return true;
+  } catch (error) {
+    return "Invalid URL";
+  }
+};
+
 export default function Link({ data, setLinks }: LinkProps) {
   const {
     register,
@@ -137,18 +146,8 @@ export default function Link({ data, setLinks }: LinkProps) {
     setOpenMenu(false);
   }
 
-  const validURL = (value: string) => {
-    try {
-      new URL(value);
-      return true;
-    } catch (error) {
-      return "Invalid URL";
-    }
-  };
-
   function onSubmit() {
     console.log(index);
-    
   }
 
   return (
