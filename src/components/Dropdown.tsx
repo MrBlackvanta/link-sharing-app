@@ -14,13 +14,29 @@ export default function Dropdown({
   setSelectedPlatform,
 }: DropdownProps) {
   const [openMenu, setOpenMenu] = useState<boolean>(false);
-  const [openUpwards, setOpenUpwards] = useState<boolean>(false);
+  const [menuPosition, setMenuPosition] = useState<{
+    top: number;
+    left: number;
+    width: number;
+  } | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
 
   function handlePlatformsMenu(platform?: PlatformType) {
     if (!platform) {
-      setOpenMenu((prev) => !prev);
+      setOpenMenu((prev) => {
+        if (!prev) {
+          const dropdownRect = dropdownRef.current?.getBoundingClientRect();
+          if (dropdownRect) {
+            setMenuPosition({
+              top: dropdownRect.bottom + 10,
+              left: dropdownRect.left,
+              width: dropdownRect.width,
+            });
+          }
+        }
+        return !prev;
+      });
       return;
     }
     setSelectedPlatform(platform);
@@ -31,28 +47,50 @@ export default function Dropdown({
     function handleClickOutside(event: MouseEvent) {
       if (
         dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node) &&
+        menuRef.current &&
+        !menuRef.current.contains(event.target as Node)
+      ) {
+        setOpenMenu(false);
+      }
+    }
+
+    function handleScroll(event: Event) {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target as Node) &&
+        dropdownRef.current &&
         !dropdownRef.current.contains(event.target as Node)
       ) {
         setOpenMenu(false);
       }
     }
+
     document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("scroll", handleScroll, true);
+
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("scroll", handleScroll, true);
     };
   }, []);
 
   useEffect(() => {
-    if (openMenu && dropdownRef.current && menuRef.current) {
+    if (openMenu && dropdownRef.current) {
       const dropdownRect = dropdownRef.current.getBoundingClientRect();
-      const menuHeight = menuRef.current.offsetHeight;
+      const menuHeight = 208;
       const viewportHeight = window.innerHeight;
 
-      if (dropdownRect.bottom + menuHeight > viewportHeight) {
-        setOpenUpwards(true);
-      } else {
-        setOpenUpwards(false);
-      }
+      const topPosition =
+        dropdownRect.bottom + 10 + menuHeight > viewportHeight
+          ? dropdownRect.top - menuHeight - 10
+          : dropdownRect.bottom + 10;
+
+      setMenuPosition({
+        top: topPosition,
+        left: dropdownRect.left,
+        width: dropdownRect.width,
+      });
     }
   }, [openMenu]);
 
@@ -66,12 +104,15 @@ export default function Dropdown({
         <span className="body-m flex-1">{selectedPlatform.label}</span>
         <IoChevronDownOutline className="text-purple" />
       </div>
-      {openMenu && (
+      {openMenu && menuPosition && (
         <div
           ref={menuRef}
-          className={`scrollbar-hide absolute ${
-            openUpwards ? "bottom-[calc(100%_+12px)]" : "top-[calc(100%_+12px)]"
-          } z-10 max-h-52 w-full overflow-y-auto rounded-lg border-borders bg-white px-4 py-3 shadow-black-shadow`}
+          className="scrollbar-hide fixed z-10 max-h-52 overflow-y-auto rounded-lg border-borders bg-white px-4 py-3 shadow-black-shadow"
+          style={{
+            top: menuPosition.top,
+            left: menuPosition.left,
+            width: menuPosition.width,
+          }}
         >
           {PLATFORMS.map((platform, index) => (
             <div

@@ -130,7 +130,7 @@ export default function Link({ data, setLinks }: LinkProps) {
     handleSubmit,
     formState: { errors },
   } = useForm<{ url: string }>();
-  const { index, platform, url } = data;  
+  const { index, platform, url } = data;
   const [selectedPlatform, setSelectedPlatform] = useState<PlatformType>(
     PLATFORMS.filter((el) => el.key === platform.key)?.[0] || PLATFORMS[0],
   );
@@ -150,13 +150,21 @@ export default function Link({ data, setLinks }: LinkProps) {
           <PiEqualsLight />
           <h3 className="font-bold text-neutral-500">Link #{index}</h3>
         </div>
-        <Button variant="link" className="body-m !p-0 text-neutral-500">
+        <Button
+          variant="link"
+          className="body-m !p-0 text-neutral-500"
+          type="button"
+        >
           Remove
         </Button>
       </div>
       <div className="grid gap-1">
         <h4 className="body-s">Platform</h4>
-        <Dropdown PLATFORMS={PLATFORMS} selectedPlatform={selectedPlatform} setSelectedPlatform={setSelectedPlatform} />
+        <Dropdown
+          PLATFORMS={PLATFORMS}
+          selectedPlatform={selectedPlatform}
+          setSelectedPlatform={setSelectedPlatform}
+        />
       </div>
       <Input
         icon={PiLinkBold}
