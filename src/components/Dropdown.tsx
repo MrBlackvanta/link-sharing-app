@@ -14,7 +14,9 @@ export default function Dropdown({
   setSelectedPlatform,
 }: DropdownProps) {
   const [openMenu, setOpenMenu] = useState<boolean>(false);
+  const [openUpwards, setOpenUpwards] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   function handlePlatformsMenu(platform?: PlatformType) {
     if (!platform) {
@@ -40,6 +42,20 @@ export default function Dropdown({
     };
   }, []);
 
+  useEffect(() => {
+    if (openMenu && dropdownRef.current && menuRef.current) {
+      const dropdownRect = dropdownRef.current.getBoundingClientRect();
+      const menuHeight = menuRef.current.offsetHeight;
+      const viewportHeight = window.innerHeight;
+
+      if (dropdownRect.bottom + menuHeight > viewportHeight) {
+        setOpenUpwards(true);
+      } else {
+        setOpenUpwards(false);
+      }
+    }
+  }, [openMenu]);
+
   return (
     <div className="relative" ref={dropdownRef}>
       <div
@@ -51,11 +67,18 @@ export default function Dropdown({
         <IoChevronDownOutline className="text-purple" />
       </div>
       {openMenu && (
-        <div className="scrollbar-hide absolute top-[calc(100%_+12px)] z-10 max-h-52 w-full overflow-y-auto rounded-lg border-borders bg-white px-4 py-3 shadow-black-shadow">
-          {PLATFORMS.map((platform, idx) => (
+        <div
+          ref={menuRef}
+          className={`scrollbar-hide absolute ${
+            openUpwards ? "bottom-[calc(100%_+12px)]" : "top-[calc(100%_+12px)]"
+          } z-10 max-h-52 w-full overflow-y-auto rounded-lg border-borders bg-white px-4 py-3 shadow-black-shadow`}
+        >
+          {PLATFORMS.map((platform, index) => (
             <div
-              className={`flex cursor-pointer items-center gap-3 border-b border-borders py-3 text-neutral-500 hover:text-purple ${idx === PLATFORMS.length - 1 ? "last:border-b-0" : ""}`}
-              key={idx}
+              className={`flex cursor-pointer items-center gap-3 border-b border-borders py-3 text-neutral-500 hover:text-purple ${
+                index === PLATFORMS.length - 1 ? "last:border-b-0" : ""
+              }`}
+              key={platform.label}
               onClick={() => handlePlatformsMenu(platform)}
             >
               <platform.icon className="text-inherit" />
