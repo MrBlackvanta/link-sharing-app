@@ -11,7 +11,7 @@ export default function PhoneContainer() {
           <div className="scrollbar-hide grid gap-5 overflow-y-auto overscroll-contain">
             {Array(6).fill(0).map((_, i) => (
               <div
-                key={i} // Use the index as the key
+                key={i} 
                 className="h-11 w-[237px] rounded-lg bg-light-grey"
               ></div>
             ))}
