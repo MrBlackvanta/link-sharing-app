@@ -26,7 +26,7 @@ export default function LinksForm() {
   }
 
   return (
-    <div className="flex-1 rounded-xl bg-white p-4">
+    <div className="grid flex-1 rounded-xl bg-white p-4">
       <div className="mb-6 p-2">
         <h1 className="heading-dark mb-2">Customize your links</h1>
         <p className="body-m mb-10">
@@ -42,18 +42,20 @@ export default function LinksForm() {
         >
           + Add new link
         </Button>
-        {links.length === 0 && <LinksEmpty />}
-        {links.length !== 0 && (
-          <div className="grid gap-6">
-            {links.map((link, idx) => (
-              <Link key={idx} data={link} setLinks={setLinks} />
-            ))}
-          </div>
-        )}
+        <div className="scrollbar-hide h-[421px] overflow-y-auto overscroll-y-contain">
+          {links.length === 0 && <LinksEmpty />}
+          {links.length !== 0 && (
+            <div className="grid gap-6">
+              {links.map((link, idx) => (
+                <Link key={idx} data={link} setLinks={setLinks} />
+              ))}
+            </div>
+          )}
+        </div>
       </div>
       <hr className="mx-[-1rem] border-borders" />
       <Button
-        className="mt-6 w-full"
+        className="mt-6 w-full md:w-fit md:justify-self-end"
         disabled={!links?.at(-1)?.url}
         type="submit"
         form={`form-${links?.at(-1)?.index}`}

@@ -1,8 +1,7 @@
-import { Button, Input } from "components";
+import { Button, Dropdown, Input } from "components";
 import { Dispatch, SetStateAction, useState } from "react";
 import { useForm } from "react-hook-form";
 import { BiLogoDevTo } from "react-icons/bi";
-import { IoChevronDownOutline } from "react-icons/io5";
 import {
   PiCodepenLogo,
   PiEqualsLight,
@@ -131,20 +130,10 @@ export default function Link({ data, setLinks }: LinkProps) {
     handleSubmit,
     formState: { errors },
   } = useForm<{ url: string }>();
-  const { index, platform, url } = data;
-  const [openMenu, setOpenMenu] = useState<boolean>(false);
+  const { index, platform, url } = data;  
   const [selectedPlatform, setSelectedPlatform] = useState<PlatformType>(
     PLATFORMS.filter((el) => el.key === platform.key)?.[0] || PLATFORMS[0],
   );
-
-  function handlePlatformsMenu(platform?: PlatformType) {
-    if (!platform) {
-      setOpenMenu(true);
-      return;
-    }
-    setSelectedPlatform(platform);
-    setOpenMenu(false);
-  }
 
   function onSubmit() {
     console.log(index);
@@ -167,30 +156,7 @@ export default function Link({ data, setLinks }: LinkProps) {
       </div>
       <div className="grid gap-1">
         <h4 className="body-s">Platform</h4>
-        <div className="relative">
-          <div
-            className="flex cursor-pointer items-center justify-between gap-3 rounded-lg border border-borders bg-white px-4 py-3"
-            onClick={() => handlePlatformsMenu(undefined)}
-          >
-            <selectedPlatform.icon className="text-neutral-500" />
-            <span className="body-m flex-1">{selectedPlatform.label}</span>
-            <IoChevronDownOutline className="text-purple" />
-          </div>
-          {openMenu && (
-            <div className="shadow-black-shadow scrollbar-hide absolute top-[calc(100%_+12px)] z-10 max-h-52 w-full overflow-y-auto rounded-lg border-borders bg-white px-4 py-3">
-              {PLATFORMS.map((el, idx) => (
-                <div
-                  className={`flex cursor-pointer items-center gap-3 border-b border-borders py-3 text-neutral-500 hover:text-purple ${idx === PLATFORMS.length - 1 ? "last:border-b-0" : ""}`}
-                  key={idx}
-                  onClick={() => handlePlatformsMenu(el)}
-                >
-                  <el.icon className="text-inherit" />
-                  <span className="body-m flex-1">{el.label}</span>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+        <Dropdown PLATFORMS={PLATFORMS} selectedPlatform={selectedPlatform} setSelectedPlatform={setSelectedPlatform} />
       </div>
       <Input
         icon={PiLinkBold}

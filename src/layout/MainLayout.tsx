@@ -6,7 +6,7 @@ export default function MainLayout() {
   return (
     <div className="bg-neutral-50">
       <Toaster />
-      <div className="mx-auto flex min-h-screen max-w-[1392px] flex-col">
+      <div className="mx-auto flex max-h-dvh max-w-[1392px] flex-col maxhd">
         <Header />
         <main className="flex-1 p-4 md:pt-0">
           <Outlet />
