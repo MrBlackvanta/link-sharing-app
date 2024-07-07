@@ -21,7 +21,7 @@ export default function LinksForm() {
         url: "",
       };
 
-      setLinks((prev) => [...prev, newLink]);
+      setLinks((prev) => [newLink, ...prev]);
     }
   }
 
