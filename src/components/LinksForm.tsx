@@ -27,7 +27,7 @@ export default function LinksForm() {
 
   return (
     <div className="grid flex-1 rounded-xl bg-white p-4">
-      <div className="mb-6 p-2">
+      <div className="mb-4 p-2">
         <h1 className="heading-dark mb-2">Customize your links</h1>
         <p className="body-m mb-10">
           Add/edit/remove links below and then share all your profiles with the

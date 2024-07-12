@@ -51,7 +51,7 @@ export default function ProfileDetails() {
       className="grid flex-1 rounded-xl bg-white p-4"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <div className="mb-6 grid p-2">
+      <div className="mb-11 grid p-2">
         <h1 className="heading-dark mb-2">Profile Details</h1>
         <p className="body-m mb-10">
           Add your details to create a personal touch to your profile.
@@ -80,7 +80,8 @@ export default function ProfileDetails() {
                   <label htmlFor="fileInput">
                     <div
                       className={clsx(
-                        "heading-s mb-6 mt-4 grid h-48 w-48 cursor-pointer place-content-center justify-items-center gap-2 rounded-xl bg-light-purple bg-cover bg-no-repeat text-purple md:m-0",{'text-white':image}
+                        "heading-s mb-6 mt-4 grid h-48 w-48 cursor-pointer place-content-center justify-items-center gap-2 rounded-xl bg-light-purple bg-cover bg-no-repeat text-purple md:m-0",
+                        { "text-white": image },
                       )}
                       style={{
                         backgroundImage: image

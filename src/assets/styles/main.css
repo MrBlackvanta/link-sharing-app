@@ -49,4 +49,5 @@
 
 body {
   font-family: "Instrument Sans", sans-serif;
+  @apply bg-neutral-50;
 }
