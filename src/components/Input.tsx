@@ -14,7 +14,7 @@ function InputComponent(
   { label, icon: Icon, error, row = false, ...props }: InputProps,
   ref: React.Ref<HTMLInputElement>,
 ) {
-  const inputBaseClasses = `w-full rounded-lg border px-4 py-3 ${Icon ? "ps-10" : ""} transition-all duration-200 ease-in-out body-m`;
+  const inputBaseClasses = `w-full rounded-lg border px-4 py-3 ${Icon ? "ps-10" : ""} transition-all duration-200 ease-in-out body-m disabled:text-opacity-50`;
   const inputValidClasses =
     "focus-visible:outline-purple focus-visible:shadow-purple-shadow caret-purple text-dark-grey";
   const inputErrorClasses =

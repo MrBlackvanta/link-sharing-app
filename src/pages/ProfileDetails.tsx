@@ -133,13 +133,16 @@ export default function ProfileDetails() {
               {...register("email")}
               error={errors.email}
               row
+              disabled
             />
             <button type="submit" hidden></button>
           </div>
         </div>
       </div>
       <hr className="mx-[-1rem] border-borders" />
-      <Button className="mt-6 w-full md:w-fit md:justify-self-end">Save</Button>
+      <Button className="mt-6 w-full md:w-fit md:justify-self-end" disabled>
+        Save
+      </Button>
     </form>
   );
 }
