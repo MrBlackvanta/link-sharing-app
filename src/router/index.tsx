@@ -28,10 +28,6 @@ const mainRoutes: RouteObject[] = [
     path: "profile-details",
     element: <ProfileDetails />,
   },
-  {
-    path: "preview",
-    element: <PreviewPage />,
-  },
 ];
 
 const subRoutes: RouteObject[] = [
