@@ -4,6 +4,8 @@ import { CreateAccountPage, LinksPage, LoginPage, ProfileDetails } from "pages";
 import React from "react";
 import { Navigate, RouteObject, createBrowserRouter } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
+import PreviewPage from "pages/PreviewPage";
+import PreviewLayout from "layout/PreviewLayout";
 
 const queryClient = new QueryClient();
 
@@ -28,7 +30,14 @@ const mainRoutes: RouteObject[] = [
   },
   {
     path: "preview",
-    element: <h1>Preview</h1>,
+    element: <PreviewPage />,
+  },
+];
+
+const subRoutes: RouteObject[] = [
+  {
+    path: "preview",
+    element: <PreviewPage />,
   },
 ];
 
@@ -55,5 +64,9 @@ export const router = createBrowserRouter([
   {
     element: withQueryClientProvider(<AuthLayout />),
     children: authRoutes,
+  },
+  {
+    element: withQueryClientProvider(<PreviewLayout />),
+    children: subRoutes,
   },
 ]);
