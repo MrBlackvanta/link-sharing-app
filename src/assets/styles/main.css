@@ -51,3 +51,55 @@ body {
   font-family: "Instrument Sans", sans-serif;
   @apply bg-neutral-50;
 }
+
+.link-card__github {
+  @apply bg-[#1a1a1a] text-white;
+}
+
+.link-card__frontend-mentor {
+  @apply bg-white text-dark-grey;
+}
+
+.link-card__twitter {
+  @apply bg-[#43B7E9] text-white;
+}
+
+.link-card__linkedin {
+  @apply bg-[#2D68FF] text-white;
+}
+
+.link-card__youtube {
+  @apply bg-[#EE3939] text-white;
+}
+
+.link-card__facebook {
+  @apply bg-[#2442AC] text-white;
+}
+
+.link-card__twitch {
+  @apply bg-[#EE3FC8] text-white;
+}
+
+.link-card__devto {
+  @apply bg-dark-grey text-white;
+}
+
+.link-card__codewars {
+  @apply bg-[#8A1A50] text-white;
+}
+
+.link-card__freecodecamp {
+  @apply bg-[#302267] text-white;
+}
+
+.link-card__gitlab {
+  @apply bg-[#EB4925] text-white;
+}
+
+.link-card__hashnode {
+  @apply bg-[#0330D1] text-white;
+}
+
+.link-card__stack-overflow {
+  @apply bg-[#EC7100] text-white;
+}
