@@ -32,7 +32,7 @@ export default function PreviewPage() {
         <h1 className="heading-m mb-2 mt-6 text-dark-grey">Ben Wright</h1>
         <h2 className="body-m text-neutral-500">{user?.email}</h2>
         <div className="mt-14 grid w-[237px] gap-5">
-          <Button className="body-m flex w-full items-center gap-2 !p-5">
+          <Button className="body-m link-card__github flex w-full items-center gap-2 !p-5">
             <PiGithubLogoFill />
             <span>GitHub</span>
             <MdArrowForward className="ms-auto" />
