@@ -1,8 +1,21 @@
 import { Button, Signature } from "components";
 import { useUser } from "hook/useUser";
+import toast from "react-hot-toast";
 import { MdArrowForward } from "react-icons/md";
 import { PiGithubLogoFill } from "react-icons/pi";
 import { NavLink } from "react-router-dom";
+
+function copyUrlToClipboard() {
+  const url = window.location.href;
+  navigator.clipboard.writeText(url).then(
+    () => {
+      toast.success("URL copied to clipboard");
+    },
+    (err) => {
+      toast.error("Could not copy URL to clipboard", err);
+    },
+  );
+}
 
 export default function PreviewPage() {
   const { user } = useUser();
@@ -12,7 +25,7 @@ export default function PreviewPage() {
       <div className="absolute top-0 -z-10 hidden h-[357px] w-full rounded-b-[32px] bg-purple md:block" />
 
       <nav className="mb-[60px] grid grid-cols-2 gap-4 rounded-xl p-4 md:m-6 md:grid-cols-[max-content,max-content] md:justify-between md:bg-white">
-        <NavLink to="/preview">
+        <NavLink to="/">
           <Button
             variant="secondary"
             className="w-full whitespace-nowrap md:w-fit"
@@ -20,9 +33,10 @@ export default function PreviewPage() {
             Back to Editor
           </Button>
         </NavLink>
-        <NavLink to="/preview">
-          <Button className="w-full md:w-fit">Share Link</Button>
-        </NavLink>
+
+        <Button className="w-full md:w-fit" onClick={copyUrlToClipboard}>
+          Share Link
+        </Button>
       </nav>
 
       <main className="mx-auto mb-14 grid w-fit justify-items-center rounded-3xl md:mt-[126px] md:bg-white md:px-14 md:py-12 md:shadow-black-shadow">
