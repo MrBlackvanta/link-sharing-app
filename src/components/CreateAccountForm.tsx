@@ -1,5 +1,5 @@
 import { Button, Input } from "components";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { PiEnvelopeSimpleFill, PiLockKeyFill } from "react-icons/pi";
@@ -17,16 +17,20 @@ export default function CreateAccountForm() {
   const password = useRef({});
   password.current = watch("password", "");
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   async function onSubmit(user: CreateAccountFormData) {
+    setIsLoading(true);
     const { error } = await supabase.auth.signUp({
       email: user.email,
       password: user.password,
     });
     if (error) {
+      setIsLoading(false);
       toast.error(error.message);
       return;
     }
+    setIsLoading(false);
 
     toast.success("Successfully created!");
     navigate("/");
@@ -70,7 +74,7 @@ export default function CreateAccountForm() {
       <p className="body-s text-neutral-500">
         Password must contain at least 8 characters
       </p>
-      <Button>Create new account</Button>
+      <Button disabled={isLoading}>Create new account</Button>
     </form>
   );
 }

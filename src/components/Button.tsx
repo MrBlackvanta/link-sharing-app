@@ -13,7 +13,7 @@ export default function Button({
   ...props
 }: ButtonProps) {
   const baseClasses =
-    "heading-s rounded-lg px-7 py-3 transition-colors duration-200 ease-in-out disabled:opacity-25";
+    "heading-s rounded-lg px-7 py-3 transition-colors duration-200 ease-in-out disabled:opacity-25 disabled:cursor-not-allowed";
 
   const primaryClasses =
     "bg-purple enabled:active:bg-purple-hover enabled:active:shadow-purple-shadow text-white";

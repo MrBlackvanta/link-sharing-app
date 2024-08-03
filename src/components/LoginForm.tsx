@@ -1,5 +1,6 @@
 import { Button, Input } from "components";
 import { useUser } from "hook/useUser";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { PiEnvelopeSimpleFill, PiLockKeyFill } from "react-icons/pi";
@@ -15,19 +16,24 @@ export default function LoginForm() {
     formState: { errors },
   } = useForm<LoginFormData>();
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   async function onSubmit(user: LoginFormData) {
+    setIsLoading(true);
+
     const { error } = await supabase.auth.signInWithPassword({
       email: user.email,
       password: user.password,
     });
     if (error) {
+      setIsLoading(false);
       toast.error(error.message);
       return;
     }
 
     // TODO
     // CHANGE EMAIL TO FIRST NAME
+    setIsLoading(false);
     toast.success(`Welcome, ${curUser?.email}!`);
     navigate("/");
   }
@@ -50,7 +56,7 @@ export default function LoginForm() {
         {...register("password", { required: "Can't be empty" })}
         error={errors.password}
       />
-      <Button>Login</Button>
+      <Button disabled={isLoading}>Login</Button>
     </form>
   );
 }
