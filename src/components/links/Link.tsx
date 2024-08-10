@@ -1,4 +1,4 @@
-import { Button, Dropdown, Input } from "components";
+import { Button, Dropdown, Input } from "components/common";
 import { Dispatch, SetStateAction, useState } from "react";
 import { useForm } from "react-hook-form";
 import { BiLogoDevTo } from "react-icons/bi";

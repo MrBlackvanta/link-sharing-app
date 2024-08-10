@@ -1,7 +1,8 @@
-import { Button, Link, LinksEmpty } from "components";
+import { Button } from "components/common";
 import { useState } from "react";
-
 import { Link as LinkType } from "types";
+import Link from "./Link";
+import LinksEmpty from "./LinksEmpty";
 
 export default function LinksForm() {
   const [links, setLinks] = useState<LinkType[]>([]);

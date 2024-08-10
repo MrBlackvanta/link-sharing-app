@@ -1,5 +1,5 @@
-import { LinksForm } from "components";
+import LinksView from "components/links/LinksView";
 
 export default function LinksPage() {
-  return <LinksForm />;
+  return <LinksView />;
 }
