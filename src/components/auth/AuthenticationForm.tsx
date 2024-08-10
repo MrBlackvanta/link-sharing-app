@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { CreateAccountForm, LoginForm } from "components";
+import { CreateAccountForm, LoginForm } from "components/auth";
 
 type AuthenticationFormProps = {
   headingText: string;
