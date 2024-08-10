@@ -1,6 +1,11 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AuthLayout, MainLayout } from "layout";
-import { CreateAccountPage, LinksPage, LoginPage, ProfileDetails } from "pages";
+import {
+  CreateAccountPage,
+  LinksPage,
+  LoginPage,
+  ProfileDetailsPage,
+} from "pages";
 import React from "react";
 import { Navigate, RouteObject, createBrowserRouter } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
@@ -26,7 +31,7 @@ const mainRoutes: RouteObject[] = [
   },
   {
     path: "profile-details",
-    element: <ProfileDetails />,
+    element: <ProfileDetailsPage />,
   },
 ];
 

@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { Button, Input } from "components";
+import { Button, Input } from "components/common";
 import { useUser } from "hook/useUser";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -12,7 +12,7 @@ type FormData = {
   email: string;
 };
 
-export default function ProfileDetails() {
+export default function ProfileDetailsView() {
   const { user } = useUser();
   const {
     control,
