@@ -1,4 +1,4 @@
-import { Button, Input } from "components";
+import { Button, Input } from "components/common";
 import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";

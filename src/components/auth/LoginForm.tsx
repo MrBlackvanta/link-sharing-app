@@ -1,4 +1,4 @@
-import { Button, Input } from "components";
+import { Button, Input } from "components/common";
 import { useUser } from "hook/useUser";
 import { useState } from "react";
 import { useForm } from "react-hook-form";

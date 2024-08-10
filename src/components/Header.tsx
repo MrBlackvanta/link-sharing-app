@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { PiEyeBold, PiLinkBold, PiUserCircleBold } from "react-icons/pi";
 import { NavLink } from "react-router-dom";
-import Button from "./Button";
+import Button from "./common/Button";
 
 export default function Header() {
   const baseStyles =
