@@ -1,4 +1,4 @@
-import { Logo } from "components";
+import { Logo } from "components/common";
 import { Toaster } from "react-hot-toast";
 import { Outlet } from "react-router-dom";
 

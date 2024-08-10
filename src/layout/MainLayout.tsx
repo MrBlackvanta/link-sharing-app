@@ -1,4 +1,4 @@
-import { Header, PhoneContainer } from "components";
+import { Header, PhoneContainer } from "components/common";
 import { Toaster } from "react-hot-toast";
 import { Outlet } from "react-router-dom";
 
